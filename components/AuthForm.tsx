@@ -15,10 +15,10 @@ import { Form } from "@/components/ui/form";
 import { useRouter } from "next/navigation";
 
 import FormField from "@/components/FormField";
-import {createUserWithEmailAndPassword} from "@firebase/auth";
+import {createUserWithEmailAndPassword} from "firebase/auth";
 import {auth} from "@/firebase/client";
 import {signIn, signUp} from "@/lib/actions/auth.action";
-import {signInWithEmailAndPassword} from "@firebase/auth";
+import {signInWithEmailAndPassword} from "firebase/auth";
 
 type FormType = "sign-in" | "sign-up";
 
