@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
+import { dummyInterviews } from "@/constants";
+import InterviewCard from "@/components/InterviewCard";
 
 async function Home() {
   return (
@@ -29,7 +31,10 @@ async function Home() {
         <h2>Your Interviews</h2>
 
         <div className="interviews-section">
-          <p>You haven&apos;t taken any interviews yet</p>
+          {dummyInterviews?.map(interview => (
+            <InterviewCard key={interview.id} {...interview} />
+          ))}
+          {/* <p>You haven&apos;t taken any interviews yet</p> */}
         </div>
       </section>
 
@@ -37,7 +42,10 @@ async function Home() {
         <h2>Take Interviews</h2>
 
         <div className="interviews-section">
-          <p>There are no interviews available</p>
+          {dummyInterviews?.map(interview => (
+            <InterviewCard key={interview.id} {...interview} />
+          ))}
+          {/* <p>There are no interviews available</p> */}
         </div>
       </section>
     </>
