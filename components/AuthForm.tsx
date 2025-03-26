@@ -14,7 +14,7 @@ import {Form} from "@/components/ui/form"
 
 import {useRouter} from "next/navigation"
 
-import FormField from "@/components/ui/FormFiled";
+import FormField from "@/components/FormField";
 
 
 type FormType = "sign-in" | "sign-up";
