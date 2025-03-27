@@ -40,3 +40,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 package-lock.json
+prepwise-d7af8-firebase-adminsdk-fbsvc-92e0424de1.json
