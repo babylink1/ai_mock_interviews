@@ -7,8 +7,7 @@ import { useRouter } from "next/navigation";
 import { vapi } from "@/lib/vapi.sdk";
 
 import { interviewer } from "@/constants";
-
-// import { createFeedback } from "@/lib/actions/general.action";
+import { createFeedback } from "@/lib/actions/general.action";
 
 enum CallStatus {
   INACTIVE = "INACTIVE",
@@ -28,9 +27,9 @@ const Agent = ({ userName, userId, interviewId, feedbackId, type, questions }: A
   const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
   const [callStatus, setCallStatus] = useState<CallStatus>(CallStatus.INACTIVE);
   const [messages, setMessages] = useState<SavedMessage[]>([]);
-  //   const [lastMessage, setLastMessage] = useState<string>("");
+  const [lastMessage, setLastMessage] = useState<string>("");
 
-  const lastMessage = messages[messages.length - 1]?.content;
+  // const lastMessage = messages[messages.length - 1]?.content;
   const isCallInactiveOrFinished =
     callStatus === CallStatus.INACTIVE || callStatus === CallStatus.FINISHED;
 
@@ -111,17 +110,18 @@ const Agent = ({ userName, userId, interviewId, feedbackId, type, questions }: A
   }, []);
 
   useEffect(() => {
-    // if (messages.length > 0) {
-    //   setLastMessage(messages[messages.length - 1].content);
-    // }
+    if (messages.length > 0) {
+      setLastMessage(messages[messages.length - 1].content);
+    }
 
     const handleGenerateFeedback = async (messages: SavedMessage[]) => {
       console.log("handleGenerateFeedback");
 
-      const { success, id } = {
-        success: true,
-        id: "feedback-id",
-      };
+      const { success, feedbackId: id } = await createFeedback({
+        interviewId: interviewId!,
+        userId: userId!,
+        transcript: messages,
+      });
 
       if (success && id) {
         router.push(`/interview/${interviewId}/feedback`);
