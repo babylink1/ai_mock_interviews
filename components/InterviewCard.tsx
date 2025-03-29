@@ -9,7 +9,7 @@ import DisplayTechIcons from "./DisplayTechIcons";
 // import DisplayTechIcons from "./DisplayTechIcons";
 
 const InterviewCard = async ({
-  interviewId,
+  id,
   userId,
   role,
   type,
@@ -74,9 +74,7 @@ const InterviewCard = async ({
           <DisplayTechIcons techStack={techstack} />
 
           <Button className="btn-primary">
-            <Link
-              href={feedback ? `/interview/${interviewId}/feedback` : `/interview/${interviewId}`}
-            >
+            <Link href={feedback ? `/interview/${id}/feedback` : `/interview/${id}`}>
               {feedback ? "Check Feedback" : "View Interview"}
             </Link>
           </Button>
